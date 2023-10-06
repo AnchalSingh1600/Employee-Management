@@ -5,15 +5,16 @@ import EmployeeService from '../services/EmployeeService'
 const AddEmployeeComponent = () => {
 
     const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [emailId, setEmailId] = useState('')
+    const [assest, setAssest] = useState('')
+    const [assestId, setAssestId] = useState('')
+    const [location, setLocation] = useState('')
     const navigate = useNavigate();
     const {id} = useParams();
 
 const saveOrUpdateEmployee = (e) => { 
         e.preventDefault();
         
-        const employee = {firstName,lastName,emailId}
+        const employee = {firstName,assest,location}
 
         if(id){
 
@@ -43,8 +44,8 @@ const saveOrUpdateEmployee = (e) => {
     useEffect(() =>{
         EmployeeService.getEmployeeById(id).then((response) =>{
             setFirstName(response.data.firstName)
-            setLastName(response.data.lastName)
-            setEmailId(response.data.emailId)
+            setAssest(response.data.assest)
+            setLocation(response.data.location)
         }).catch(error =>{
             console.log(error)
         })
@@ -74,6 +75,17 @@ const title = () =>{
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
+                                 <label className='form-label'>Assest ID : </label>
+                                 <input type = "text"
+                                    placeholder = "Enter Assest ID"
+                                    name ="assestId"
+                                    className = "form-control"
+                                    value = {assestId}
+                                    onChange = {(e) => setFirstName(e.target.value)}>
+                                    
+                                 </input>
+                            </div>
+                            <div className='form-group mb-2'>
                                  <label className='form-label'>First Name : </label>
                                  <input type = "text"
                                     placeholder = "Enter First Name"
@@ -91,10 +103,10 @@ const title = () =>{
                                  <input 
                                  type = "text"
                                  placeholder = "Enter Last Name"
-                                 name ="lastName"
+                                 name ="assest"
                                  className = "form-control"
-                                 value = {lastName}
-                                 onChange = {(e) => setLastName(e.target.value)}>
+                                 value = {assest}
+                                 onChange = {(e) => setAssest(e.target.value)}>
                                     
                                  </input>
                             </div>
@@ -104,10 +116,10 @@ const title = () =>{
                                  <input
                                   type = "email"
                                   placeholder = "Enter email Id"
-                                  name ="emailId"
+                                  name ="location"
                                   className = "form-control"
-                                  value = {emailId}
-                                  onChange = {(e) => setEmailId(e.target.value)}
+                                  value = {location}
+                                  onChange = {(e) => setLocation(e.target.value)}
                                  >
                                    
                                  </input>

@@ -27,6 +27,10 @@ class EmployeeService{
     {
         return axios.delete(EMPLOYEE_BASE_REST_API_URL+"/"+employeeId); 
     }
+
+    cloneEmployee(employeeId){
+        return axios.post(EMPLOYEE_BASE_REST_API_URL+"/clone/"+employeeId);
+    }
 }
 
 export default new EmployeeService();
